@@ -31,6 +31,7 @@
     font-family: var(--font-head);
     overflow-x: hidden;
     cursor: none;
+    transition: filter 0.5s ease;
   }
 
   /* Custom Cursor */
@@ -1178,25 +1179,52 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 reveals.forEach(el => observer.observe(el));
 
-// ─── Orb ─────────────────────────────────────────────────
+// ─── Orb Voice Action Simulation ─────────────────────────
 const orb = document.getElementById('orb');
 const orbLabel = document.getElementById('orb-label');
-let orbActive = false;
-
-orb.addEventListener('click', () => {
-  orbActive = !orbActive;
-  orb.classList.toggle('listening', orbActive);
-  orbLabel.textContent = orbActive ? 'Listening… Say a command' : 'Click to Activate';
-});
 
 function activateCmd(el) {
   orb.classList.add('listening');
-  orbLabel.textContent = el.textContent.trim();
+  const cmdText = el.textContent.trim();
+  orbLabel.textContent = cmdText;
+
   setTimeout(() => {
     orb.classList.remove('listening');
     orbLabel.textContent = 'Command Executed ✓';
-    setTimeout(() => { orbLabel.textContent = 'Click to Activate'; }, 1800);
-  }, 1800);
+    
+    // Execute simulated actions
+    if (cmdText.includes('documents')) {
+      alert('Simulated OS Action: Opening Documents folder...');
+    } 
+    else if (cmdText.includes('Search')) {
+      window.open('https://www.google.com/search?q=AI+news', '_blank');
+    } 
+    else if (cmdText.includes('volume')) {
+      alert('Simulated OS Action: System volume successfully set to 50%');
+    } 
+    else if (cmdText.includes('screenshot')) {
+      // Flash the screen white to simulate a screenshot
+      const flash = document.createElement('div');
+      flash.style.cssText = 'position:fixed;inset:0;background:white;z-index:99999;transition:0.1s;';
+      document.body.appendChild(flash);
+      setTimeout(() => flash.style.opacity = '0', 50);
+      setTimeout(() => {
+        flash.remove();
+        alert('Simulated OS Action: Screenshot captured to desktop.');
+      }, 150);
+    } 
+    else if (cmdText.includes('settings')) {
+      // Actually prompts to open Windows Settings on PC
+      window.location.href = "ms-settings:";
+    } 
+    else if (cmdText.includes('dark mode')) {
+      // Inverts website colors to simulate a sudden theme change
+      document.body.style.filter = document.body.style.filter ? '' : 'invert(1) hue-rotate(180deg)';
+    }
+
+    // Reset text
+    setTimeout(() => { orbLabel.textContent = 'Click to Activate'; }, 2000);
+  }, 1600);
 }
 </script>
 </body>
