@@ -774,6 +774,21 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    nav { padding: 1rem; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .nav-links { display: none; }
+    body { cursor: auto; } #cursor, #cursor-trail { display: none; }
+    .nav-cta, .btn-primary, .btn-ghost, .download-btn, .cmd-pill, .orb { cursor: pointer; }
+    #features, #download, #terminal-section, #voice-demo { padding: 4rem 1.5rem; }
+    .features-grid, #download, .voice-commands { grid-template-columns: 1fr; }
+    #download { text-align: center; gap: 3rem; }
+    .holo-rings { display: none; }
+    .terminal-body { font-size: 0.65rem; padding: 1rem; }
+    footer { flex-direction: column; gap: 1.5rem; padding: 2rem 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -786,7 +801,7 @@
 <nav>
   <a class="nav-logo" href="#">
     <div class="logo-dot"></div>
-    Neeli</span>
+    Neeli
   </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
@@ -945,7 +960,7 @@
           </div>
         </div>
 
-        <a href="neeli.exe" download="neeli.exe" class="download-btn">
+        <a href="app.exe" download="neeli-app.exe" class="download-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download app.exe
         </a>
